@@ -1,6 +1,6 @@
 import torch
 from PIL import Image
-from segmentation.utils import get_masks, get_segmented_image, add_segment_to_image
+from unet_segmentation.utils import get_masks, get_segmented_image, add_segment_to_image
 import matplotlib.pyplot as plt
 import numpy as np
 import cv2

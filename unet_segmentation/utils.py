@@ -3,8 +3,8 @@ from PIL import Image
 import torch
 from torchvision import transforms
 import numpy as np
-from segmentation.unet import Unet
-from segmentation.post_processing import (
+from unet_segmentation.unet import Unet
+from unet_segmentation.post_processing import (
     prediction_to_classes,
     mask_from_prediction,
     remove_predictions
