@@ -12,13 +12,20 @@ alpha = 0.5
 beta = 1.0 - alpha
 model = torch.load('checkpoint/unet.pt')
 
+@app.route("/test", methods=["GET"])
+def test_get():
+    print("Hello World!")
+    return "Yo What Up!"
+
 @app.route("/upload", methods=["POST"])
 def process_image():
-    file1 = request.files['image']
-    file2 = request.files['pattern']
+    print("Got Request")
+    imageByteArray = request.files['image']
+    patternByteArray = request.files['pattern']
 
-    img = Image.open(file1.stream)
-    pattern = Image.open(file2.stream)
+    img = Image.open(io.BytesIO(imageByteArray.read()))
+    pattern = Image.open(io.BytesIO(patternByteArray.read()))
+
     result = get_result(img, pattern)
     encoded_imges = []
     for out in result:
@@ -42,8 +49,8 @@ def get_result(img: Image, pattern: Image):
 def get_response_image(image: np.ndarray):
     pil_img = Image.fromarray(image)
     byte_arr = io.BytesIO()
-    pil_img.save(byte_arr, format='PNG') # convert the PIL image to byte array
-    encoded_img = encodebytes(byte_arr.getvalue()).decode('ascii') # encode as base64
+    pil_img.save(byte_arr, format='JPEG') # convert the PIL image to byte array
+    encoded_img = encodebytes(byte_arr.getvalue()).decode() # encode as base64
     return encoded_img
 
 if __name__ == "__main__":
