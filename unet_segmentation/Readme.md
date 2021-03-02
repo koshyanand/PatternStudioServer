@@ -1,3 +1,3 @@
-Deep Fashion 2 Unet Pretrained Segmentation Model thanks to Dani Mora.
+Unet pretrained segemntation model from Dani Mora.
 
-Link : https://github.com/Dani-Mora/pytorch-unet-segmentation
+Link to download the model checkpoint: https://github.com/Dani-Mora/pytorch-unet-segmentation
